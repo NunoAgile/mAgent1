@@ -18,25 +18,25 @@ Cenários Secundário:
   - Elaboração de mockups dos ecrãs
 - Fase 3 (cerca de 4 semanas)
   - Implementação das funcionalidades de suporte da aplicação
-  - Login/Logout
-  - Estabelecimento de sessão
-  - Bloqueio automático
-  - Desbloqueio por PIN e/ou Biometria
-  - Configurações
+    - Login/Logout
+    - Estabelecimento de sessão
+    - Bloqueio automático
+    - Desbloqueio por PIN e/ou Biometria
+    - Configurações
 - Fase 4 (cerca de 3 semanas)
   - Implementação de funcionalidades básicas
-  - Página inicial com o Estado/Contexto da Agência móvel
-  - Abertura de Caixa
-  - Fecho de Caixa
-  - Relatório de fluxos de caixa
+    - Página inicial com o Estado/Contexto da Agência móvel
+    - Abertura de Caixa
+    - Fecho de Caixa
+    - Relatório de fluxos de caixa
 - Fase 5 (cerca de 3 semanas)
   - Implementação de funcionalidades mínimas de negócio
-  - Depósitos
-  - Levantamentos
-  - Transferências entre contas
-  - Informação de conta
+    - Depósitos
+    - Levantamentos
+    - Transferências entre contas
+    - Informação de conta
 - Fase 6 (cerca de 3 semanas)
   - Implementação de funcionalidades mínimas de negócio
-  - Criação de ficha/conta de cliente.
-  - Informação de cliente
+    - Criação de ficha/conta de cliente.
+    - Informação de cliente
 
