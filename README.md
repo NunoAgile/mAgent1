@@ -7,7 +7,7 @@ A app tem semelhanças com as aplicações de “homebanking” como é exemplo 
 # Cenários
 - Cenário Principal: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica) O utilizador carrega no botão “Consultar”, disponível no menu principal, e visualiza a informação relativa aos seus últimos movimentos. De seguida, retorna ao menu principal e carrega no botão “Transferir”. O utilizador preenche a informação necessária à realização da transferência e prime o botão “Realizar Transferência”. Feita a transferência com sucesso, o utilizador carrega no botão “Consultar” e visualiza a mudança no seu saldo. 
 
-Cenários Secundário: 
+Cenários Secundários: 
 - Cenário relativo à informação de clientes (ficha de cliente, conta de cliente). O utilizador carrega em Minha Conta e consegue visualizar e alterar a respetiva informação.  
 - Cenário relativo à abertura/fecho de caixa, contexto da agência móvel(?), e fluxos de caixa. O utilizador carrega em Abrir Caixa, dando início ao tracking das transições que vão ocorrer até ao momento que o utilizador feche a caixa. O utilizador realiza algumas tarefas, e de seguida fecha a caixa, ao carregar no botão Fechar Caixa. Ao fechar a Caixa aparece no ecrã a possibilidade de visualizar uma tabela com a informação sobre o fluxo de caixa. O utilizador carrega em visualizar fluxo de caixa.
 
