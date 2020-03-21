@@ -13,14 +13,13 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 5. O agente prime "Depositar".
 
 - Cenários Secundários: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica)
-  
-  - A.
+  - 1
     1. O agente prime "Transferências"
     2. O agente preenche os campos com a informação de ambas as contas dos terceiros.
     3. O agente insere o montante.
     4. O agente prime "Transferir".
  
- - B.
+  - 2
     1. O agente prime "Movimentos"
     2. O agente insere o número de conta do cliente e pressiona "Ver movimentos".
     3. A aplicação mostra o saldo e os movimentos da conta requisitada.
