@@ -32,7 +32,7 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 ![Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/FRV1.png)
 
 # Non Functional Requirements
-![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/NFRV1.png)
+![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/NFRV2.png)
 
 # Plano de trabalho
 - Fase 1 (cerca de 1 semana)
