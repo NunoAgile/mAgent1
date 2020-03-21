@@ -52,7 +52,7 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 ![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/NFRV2.png)
 
 # Mockups e interfaces
-![Mockups](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/Interfaces/mixed_interface.jpg)
+![Mockups](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/Interfaces/mixed_interfacev2.jpg)
 
 # Plano de trabalho
 - Fase 1 (cerca de 1 semana)
