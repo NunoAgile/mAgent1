@@ -1,3 +1,4 @@
+![University](https://www.iade.europeia.pt/hs-fs/hubfs/IADE-SITE/static/ue-iade-h75.png?width=444&name=ue-iade-h75.png)
 # mAgent
 A necessidade de realizar operações financeiras em mobilidade tem-se manifestado nos últimos anos com o desenvolvimento da tecnologia e dos modos de vida em movimento, bem como pela falta de infraestruturas para este efeito em determinadas regiões do mundo. Estes fenômenos deram origem a várias aplicações que permitissem realizar este tipo de tarefas, com segurança, e em qualquer lugar.
 Com isto em mente, o projecto visa desenvolver uma aplicação para tablets Android, que permita executar de forma segura as tarefas relevantes de uma entidade financeira de forma autónoma e em mobilidade, com georreferenciação das operações executadas.
@@ -26,6 +27,12 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 
 # Personas
 - Agente: Individuo que representa a entidade financeira.
+
+# Functional Requirements
+![Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/FRV1.png)
+
+# Non Functional Requirements
+![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/NFRV1.png)
 
 # Plano de trabalho
 - Fase 1 (cerca de 1 semana)
