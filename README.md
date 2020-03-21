@@ -1,4 +1,21 @@
 ![University](https://www.iade.europeia.pt/hs-fs/hubfs/IADE-SITE/static/ue-iade-h75.png?width=444&name=ue-iade-h75.png)
+
+### Degree in Computer Engineering | School Year 2019/2020 
+
+
+Student Name | Email | Student Number
+------------ | ------------- | -------------
+Manuel Beijinho | manuel.beijinho@gmail.com | 50037192
+
+Professors | Email 
+------------ | ------------- 
+Jacinto Estima | jacinto.estima@universidadeeuropeia.pt 
+José Vasconcelos | jose.vasconcelos@universidadeeuropeia.pt
+
+Empresa |
+--------|
+AgileFactor
+
 # mAgent
 A necessidade de realizar operações financeiras em mobilidade tem-se manifestado nos últimos anos com o desenvolvimento da tecnologia e dos modos de vida em movimento, bem como pela falta de infraestruturas para este efeito em determinadas regiões do mundo. Estes fenômenos deram origem a várias aplicações que permitissem realizar este tipo de tarefas, com segurança, e em qualquer lugar.
 Com isto em mente, o projecto visa desenvolver uma aplicação para tablets Android, que permita executar de forma segura as tarefas relevantes de uma entidade financeira de forma autónoma e em mobilidade, com georreferenciação das operações executadas.
