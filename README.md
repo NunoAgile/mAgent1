@@ -24,7 +24,8 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
     2. O agente insere o número de conta do cliente e pressiona "Ver movimentos".
     3. A aplicação mostra o saldo e os movimentos da conta requisitada.
 
-
+# Personas
+- Agente: Individuo que representa a entidade financeira.
 
 # Plano de trabalho
 - Fase 1 (cerca de 1 semana)
