@@ -24,11 +24,12 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 
 # Cenários
 - Cenário Principal: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica)
-1. A aplicação mostra a informação sobre a caixa do agente.
+1. O agente preenche a informação sobre a caixa.
 2. O agente prime "Abrir Caixa".
-3. De seguida, navega para "Numerário" e carrega em "Depósito".
-4. O agente preenche os campos requisitados com a informação da conta do cliente, bem como o montante.
-5. O agente prime "Depositar".
+3. A aplicação mostra a informação sobre a caixa do agente.
+4. De seguida, navega para "Numerário" e carrega em "Depósito".
+5. O agente preenche os campos requisitados com a informação da conta do cliente, bem como o montante.
+6. O agente prime "Depositar".
 
 - Cenários Secundários: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica)
   - 1
