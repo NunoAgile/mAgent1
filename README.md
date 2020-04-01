@@ -55,8 +55,6 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
 # Mockups e interfaces
 ![Mockups](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/Interfaces/mixed_interfacev2.jpg)
 
-# Modelo de domínio
-![Mockups](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/Domain%20Model/mAgent_domainmodel.png)
 
 # Plano de trabalho
 - Fase 1 (cerca de 1 semana)
