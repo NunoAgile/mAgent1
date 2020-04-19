@@ -23,34 +23,40 @@ Com isto em mente, o projecto visa desenvolver uma aplicação para tablets Andr
 Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e BPC.
 
 # Cenários
-- Cenário Principal: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica)
-1. O agente preenche a informação sobre a caixa.
-2. O agente prime "Abrir Caixa".
-3. A aplicação mostra a informação sobre a caixa do agente.
-4. De seguida, navega para "Numerário" e carrega em "Depósito".
-5. O agente preenche os campos requisitados com a informação da conta do cliente, bem como o montante.
-6. O agente prime "Depositar".
+- Cenário Principal: (Assumido que o utilizador realiza o login com sucesso, através da autenticação PIN ou biométrica)
+  1. O agente preenche a informação sobre a caixa.
+  2. O agente prime "Open Shift".
+  3. A aplicação mostra a informação sobre a caixa do agente.
+  4. De seguida, navega para "Client" e identifica a conta do cliente.
+  5. O agente escolhe a operação "Deposits".
+  6. O agente preenche o montante.
+  7. O agente prime "Deposit".
+  8. O agente introduz o PIN de segurança.
 
-- Cenários Secundários: (Assumido que o utilizador realiza o login com sucesso, através da autenticação biométrica)
+- Cenários Secundários: (Assumido que o utilizador realiza o login com sucesso, através da autenticação PIN ou biométrica)
   - 1
-    1. O agente prime "Transferências"
-    2. O agente preenche os campos com a informação de ambas as contas dos terceiros.
-    3. O agente insere o montante.
-    4. O agente prime "Transferir".
+     1. O agente prime "Transfers"
+     2. O agente preenche os campos com a informação de ambas as contas dos terceiros.
+     3. O agente insere o montante.
+     4. O agente prime "Transfer".
+     5. O agente introduz o PIN de segurança.
  
   - 2
-    1. O agente prime "Movimentos"
-    2. O agente insere o número de conta do cliente e pressiona "Ver movimentos".
-    3. A aplicação mostra o saldo e os movimentos da conta requisitada.
+      1. O agente prime "Client"
+      2. O agente preenche os campos para identificar a conta do cliente.
+      3. O agente escolhe a conta pretendida.
+      4. Pressiona "Check balance".
+      5. Introduz o PIN de segurança
+      6. A aplicação mostra o saldo e os movimentos da conta requisitada.
 
 # Personas
 - Agente: Individuo que representa a entidade financeira.
 
 # Functional Requirements
-![Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/FRV1.png)
+![Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/3rd%20Delivery/FR_NFR_Updated/FR.png)
 
 # Non Functional Requirements
-![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/FR_NFR_PNG/NFRV2.png)
+![Non Functional Requirements](https://github.com/manuelbpc/mAgent/blob/master/3rd%20Delivery/FR_NFR_Updated/NFR.png)
 
 # Mockups e interfaces
 ![Mockups](https://github.com/manuelbpc/mAgent/blob/master/2nd%20Delivery/Interfaces/mixed_interfacev2.jpg)
@@ -72,7 +78,7 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
     - Página inicial com o Estado/Contexto da Agência móvel
     - Abertura de Caixa
     - Fecho de Caixa
-    - Relatório de fluxos de caixa
+    - Relatório de fluxos de caixa (opcional)
 - Fase 5 (cerca de 3 semanas)
   - Implementação de funcionalidades mínimas de negócio
     - Depósitos
@@ -81,5 +87,6 @@ Alguns exemplos de aplicações concorrentes são: CB Bank, digipay, Emerico e B
     - Informação de conta
 - Fase 6 (cerca de 3 semanas)
    - Debugging
+   - Melhoria de código
     
 
