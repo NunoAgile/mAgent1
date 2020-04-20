@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.QuickPinActivity">
+
+    <com.chaos.view.PinView
+        android:id="@+id/quickpinPV"
+        style="@style/PinWidget.PinView"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginBottom="568dp"
+        android:inputType="numberPassword"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        app:lineColor="@color/colorPrimary"
+        app:itemCount="4"
+        app:itemHeight="80dp"
+        app:itemRadius="8dp"
+        app:itemSpacing="10dp"
+        app:itemWidth="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineWidth="1dp"
+        app:viewType="rectangle"
+        />
+
+    <GridLayout
+        android:layout_width="400dp"
+        android:layout_height="252dp"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickpinPV"
+        android:useDefaultMargins="false"
+        android:alignmentMode="alignBounds"
+        android:rowOrderPreserved="false"
+
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n1"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            android:textSize="21dp"
+            style="@style/PINButtonTopLeft"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n2"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n3"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            android:textSize="21dp"
+            style="@style/PINButtonTopRight"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n4"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n5"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n6"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n7"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n8"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n9"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/unlockBtn"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:icon="@drawable/outline_lock_open_24"
+            app:iconTint="@color/colorPrimary"
+            app:iconGravity="textStart"
+            app:iconSize="35dp"
+            android:textSize="21dp"
+            style="@style/PINButtonBottomLeft"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n0"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            app:cornerRadius="0dp"
+            android:textSize="21dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delBtn"
+            android:layout_width="133dp"
+            android:layout_height="63dp"
+            android:textSize="21dp"
+            app:icon="@drawable/baseline_backspace_24"
+            app:iconTint="@color/colorPrimary"
+            app:iconGravity="textStart"
+            style="@style/PINButtonBottomRight"
+            app:strokeColor="@color/colorPrimary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            />
+
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

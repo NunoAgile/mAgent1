@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.cash.Cash_cashConfirmActivity">
+
+    <com.chaos.view.PinView
+        android:id="@+id/securityPinPV"
+        style="@style/PinWidget.PinView"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="numberPassword"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        app:itemCount="6"
+        app:itemHeight="25dp"
+        app:itemRadius="8dp"
+        app:itemSpacing="8dp"
+        app:itemWidth="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineColor="@color/colorPrimary"
+        app:lineWidth="1dp"
+        app:viewType="rectangle" />
+
+    <TextView
+        android:id="@+id/insertPinTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="36dp"
+        android:text="Insert Security Pin"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/securityPinPV"
+        app:layout_constraintTop_toBottomOf="@+id/securityPinPV" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="198dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:alignmentMode="alignBounds"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:rowCount="4"
+        android:rowOrderPreserved="false"
+        android:useDefaultMargins="false"
+        app:layout_constraintEnd_toEndOf="@+id/securityPinPV"
+        app:layout_constraintStart_toStartOf="@+id/securityPinPV"
+        app:layout_constraintTop_toBottomOf="@+id/insertPinTv">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n1"
+            style="@style/PINButtonTopLeft"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n3"
+            style="@style/PINButtonTopRight"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n5"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n6"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n7"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n8"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n9"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/unlockBtn"
+            style="@style/PINButtonBottomLeft"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:icon="@drawable/outline_lock_open_24"
+            app:iconGravity="textStart"
+            app:iconSize="35dp"
+            app:iconTint="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/n0"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delBtn"
+            style="@style/PINButtonBottomRight"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="15sp"
+            app:icon="@drawable/baseline_backspace_24"
+            app:iconGravity="textStart"
+            app:iconTint="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary" />
+
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/declineSPinBtn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/cancel"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/gridLayout"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirmSPinBtn"
+        android:layout_width="85dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/confirm"
+        android:textSize="10sp"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/gridLayout"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,2 @@
+rootProject.name='mAgent Dev'
+include ':app'

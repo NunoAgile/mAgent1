@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">mAgent</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="PIN">PIN</string>
+    <string name="PINC">Confirm PIN</string>
+    <string name="switch_text">TOUCH ID option</string>
+    <string name="login">LOGIN</string>
+    <string name="url">http://mmc.test.trulyplus.com/</string>
+    <string name="tab1_cash">Cash</string>
+    <string name="tab2_client">Client</string>
+    <string name="close_alert_title">Leave</string>
+    <string name="close_alert_text">Are you sure you want to leave?</string>
+    <string name="decline">No</string>
+    <string name="accept">Yes</string>
+    <string name="max_attempt">Too many wrong attempts</string>
+    <string name="wrong_pin">Wrong PIN</string>
+    <string name="page_cash">Cash</string>
+    <string name="page_client">Client</string>
+    <string name="page_transfers">Transfers</string>
+    <string name="amount">Insert Amount</string>
+    <string name="obs">Observations</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="accept2">Accept</string>
+    <string name="shiftDetails">"My Shift Details \n"</string>
+
+
+
+            <string-array name="curr_array">
+                <item>EUR</item>
+                <item>AOA</item>
+                <item>USD</item>
+                <item>GBP</item>
+            </string-array>
+
+
+
+</resources>
