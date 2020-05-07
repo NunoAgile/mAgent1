@@ -21,7 +21,6 @@ import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.ShiftDetails;
 import com.example.magentdev.ShiftOperations;
 import com.example.magentdev.VolleyCallback;
-import com.example.magentdev.activities.QuickPinActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.hash.Hashing;
 
@@ -31,8 +30,6 @@ import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -49,7 +46,7 @@ public class Cash_cashConfirmActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_cash_cash_confirm);
+        setContentView(R.layout.fragment_cash_secpin);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -62,6 +59,7 @@ public class Cash_cashConfirmActivity extends Activity {
         decBtn = findViewById(R.id.declineSPinBtn);
 
         securityPinPv = findViewById(R.id.securityPinPV);
+        securityPinPv.setShowSoftInputOnFocus(false);
         b1 = findViewById(R.id.n1);
         b2 = findViewById(R.id.n2);
         b3 = findViewById(R.id.n3);
@@ -81,7 +79,7 @@ public class Cash_cashConfirmActivity extends Activity {
         }
         requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        QuickPinActivity.hideKeyboard(Cash_cashConfirmActivity.this);
+
 
         createKeypad();
         checkPinUpdate();
@@ -230,6 +228,7 @@ public class Cash_cashConfirmActivity extends Activity {
             public void onSuccess(JSONObject response) {
                 try {
                     JSONObject S = response.getJSONObject("S");
+                    System.out.println(response);
                     if(S.getInt("ECD") == 0){
                         finish();
                         Toast.makeText(Cash_cashConfirmActivity.this, "Shift successfully open.", Toast.LENGTH_SHORT).show();

@@ -10,11 +10,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 
 import com.example.magentdev.R;
@@ -384,7 +380,7 @@ public class LoginActivity extends AppCompatActivity {
                             try (FileOutputStream fos = getApplicationContext().openFileOutput(filenameFP, getApplicationContext().MODE_PRIVATE)) {
                                 fos.write(bFP);
                             }
-                            Intent intent = new Intent(LoginActivity.this, CashRegScreenActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         }else if(S.getInt("ECD") == -1){

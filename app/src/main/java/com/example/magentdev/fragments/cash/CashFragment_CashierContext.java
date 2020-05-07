@@ -1,4 +1,4 @@
-package com.example.magentdev.fragments.transfers;
+package com.example.magentdev.fragments.cash;
 
 import android.os.Bundle;
 
@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 
 import com.example.magentdev.R;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * create an instance of this fragment.
+ */
+public class CashFragment_CashierContext extends Fragment {
 
-public class TransfersFragment_main extends Fragment {
-
-
-    public TransfersFragment_main() {
+    public CashFragment_CashierContext() {
         // Required empty public constructor
     }
 
@@ -28,6 +30,7 @@ public class TransfersFragment_main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transfer_main, container, false);
+        return inflater.inflate(R.layout.fragment_cash_cashier_context, container, false);
     }
+
 }

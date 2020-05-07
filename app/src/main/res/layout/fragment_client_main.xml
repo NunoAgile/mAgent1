@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.client.ClientFragment_main">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/findgidBtn"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="203dp"
+        android:text="@string/search"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tilGIDInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilGIDInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="312dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/userFoundTv"
+        app:layout_constraintEnd_toStartOf="@+id/findgidBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiGIDInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/insert_document_identifier_to_search_for"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="181dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/userFoundTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="483dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="483dp"
+        android:text="User"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findgidBtn" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gotoWithdrawBtn"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="172dp"
+        android:text="WITHDRAW"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gotoMovementsBtn"
+        app:layout_constraintStart_toEndOf="@+id/gotoDepositBtn"
+        app:layout_constraintTop_toBottomOf="@+id/userFoundTv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gotoDepositBtn"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="172dp"
+        android:text="DEPOSIT"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userFoundTv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gotoMovementsBtn"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="172dp"
+        android:text="MOVEMENTS"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userFoundTv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/accs_menulistLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="312dp"
+        android:hint="Accounts List"
+        android:enabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/gotoWithdrawBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userFoundTv"
+        app:layout_constraintVertical_bias="0.025">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+             />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.CustomThemeShiftConfirm"
             ></activity>
-        <activity android:name=".activities.CashRegScreenActivity"
+        <activity android:name=".activities.MainActivity"
             android:screenOrientation="landscape"
          ></activity>
         <activity android:name=".activities.LoginActivity"

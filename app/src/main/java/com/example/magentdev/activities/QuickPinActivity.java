@@ -13,11 +13,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.chaos.view.PinView;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
@@ -61,6 +57,7 @@ public class QuickPinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quick_pin);
 
         quickPinPV = findViewById(R.id.quickpinPV);
+        quickPinPV.setShowSoftInputOnFocus(false);
         b1 = findViewById(R.id.n1);
         b2 = findViewById(R.id.n2);
         b3 = findViewById(R.id.n3);
@@ -75,8 +72,7 @@ public class QuickPinActivity extends AppCompatActivity {
         delBtn = findViewById(R.id.delBtn);
 
         requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
-        // close keyboard on startup
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         createKeypad();
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +134,17 @@ public class QuickPinActivity extends AppCompatActivity {
                 quickPinPV.setText(quickPinPV.getText().insert(quickPinPV.getText().length(),b9.getText()));
             }
         });
-
+        delBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = quickPinPV.getText().toString().trim();
+                if(str.length() !=0){
+                    str  = str.substring( 0, str.length() - 1 );
+                    quickPinPV.setText(str);
+                }
+            }
+        });
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         checkPinUpdate();
         try {
             pd = new PrivateData(getApplicationContext());
@@ -160,12 +166,11 @@ public class QuickPinActivity extends AppCompatActivity {
                 if(quickPinPV.length() == 4){
                    tryCount++;
                     if(quickPinPV.getText().toString().equals(pd.getQuickpin())){
-                        Intent intent = new Intent(QuickPinActivity.this, CashRegScreenActivity.class);
+                        Intent intent = new Intent(QuickPinActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }else{
                         quickPinPV.setText(null);
-                        hideKeyboard(QuickPinActivity.this);
                         Snackbar.make(quickPinPV, getResources().getString(R.string.wrong_pin), Snackbar.LENGTH_LONG).show();
                         if(tryCount == 3) {
                             pinTimeout();
@@ -206,16 +211,6 @@ public class QuickPinActivity extends AppCompatActivity {
         }
     }
 
-    public static void hideKeyboard(Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        //Find the currently focused view, so we can grab the correct window token from it.
-        View view = activity.getCurrentFocus();
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if (view == null) {
-            view = new View(activity);
-        }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
     public void onBackPressed(){
         new MaterialAlertDialogBuilder(this)
@@ -269,9 +264,4 @@ public class QuickPinActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.out.println("Quick Pin destruido");
-    }
 }
