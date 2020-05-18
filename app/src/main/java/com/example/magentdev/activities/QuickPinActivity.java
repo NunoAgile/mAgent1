@@ -2,7 +2,6 @@ package com.example.magentdev.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.android.volley.RequestQueue;
@@ -18,7 +16,7 @@ import com.chaos.view.PinView;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
-import com.example.magentdev.SessionOperations;
+import com.example.magentdev.API_Operations.WsrAuth_Session;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -205,7 +203,7 @@ public class QuickPinActivity extends AppCompatActivity {
                     System.out.println(result);
                 }
             };
-            SessionOperations.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
+            WsrAuth_Session.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -237,7 +235,7 @@ public class QuickPinActivity extends AppCompatActivity {
                                     System.out.println(result);
                                 }
                             };
-                            SessionOperations.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
+                            WsrAuth_Session.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

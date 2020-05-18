@@ -2,7 +2,6 @@ package com.example.magentdev.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,10 +14,10 @@ import com.android.volley.RequestQueue;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
-import com.example.magentdev.SessionOperations;
+import com.example.magentdev.API_Operations.WsrAuth_Session;
 import com.example.magentdev.VolleyCallback;
 import com.example.magentdev.fragments.cash.CashFragment_CashierContext;
-import com.example.magentdev.fragments.cash.CashFragment_OpenShift;
+import com.example.magentdev.fragments.cash.CashFragment_ManageShift;
 import com.example.magentdev.fragments.client.ClientFragment_main;
 import com.example.magentdev.fragments.transfers.TransfersFragment_main;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     PrivateData pd;
     private MaterialToolbar topAppbar;
-    private CashFragment_OpenShift cashFragment_openShift;
+    private CashFragment_ManageShift cashFragment_manageShift;
     private CashFragment_CashierContext cashFragment_cashierContext;
     private ClientFragment_main client_fragment_main;
     private TransfersFragment_main transfers_fragment_main;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         topAppbar.setBackgroundResource(R.drawable.top_app_bar_round);
         tabLayout = findViewById(R.id.tabs);
 
-        cashFragment_openShift = new CashFragment_OpenShift();
+        cashFragment_manageShift = new CashFragment_ManageShift();
         cashFragment_cashierContext = new CashFragment_CashierContext();
         client_fragment_main = new ClientFragment_main();
         transfers_fragment_main = new TransfersFragment_main();
@@ -61,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         setFragment(cashFragment_cashierContext);
         tabLayout.addTab(tabLayout.newTab().setText("Cashier Context"));
-        tabLayout.addTab(tabLayout.newTab().setText("Open Shift"));
-        tabLayout.addTab(tabLayout.newTab().setText("Close Shift"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Shift"));
 
 
         bottom_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             tabLayout.removeAllTabs();
                         }
                         tabLayout.addTab(tabLayout.newTab().setText("Cashier Context"));
-                        tabLayout.addTab(tabLayout.newTab().setText("Open Shift"));
-                        tabLayout.addTab(tabLayout.newTab().setText("Close Shift"));
+                        tabLayout.addTab(tabLayout.newTab().setText("My Shift"));
                         return true;
 
                     case (R.id.nav_client):
@@ -108,14 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 String tabText = tab.getText().toString();
                 switch(tabText){
                     case("Cashier Context"):
-                        System.out.println("TOU NO CONTEXT");
                         setFragment(cashFragment_cashierContext);
                         return;
-                    case("Open Shift"):
-                        System.out.println("TOU NO OPEN SHIFT");
-                        setFragment(cashFragment_openShift);
-                        return;
-                    case("Close Shift"):
+                    case("My Shift"):
+                        setFragment(cashFragment_manageShift);
                         return;
                 }
             }
@@ -141,9 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setFragment(Fragment fragment){
+    public void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nestedScrollView, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -172,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                                     System.out.println(result);
                                 }
                             };
-                            SessionOperations.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
+                            WsrAuth_Session.wsrAuthSessionClose(pd.getDeviceToken(),pd.getSessionToken(),callback,requestQueue);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -181,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(R.drawable.round_exit_to_app_24)
                 .show();
     }
-
 
 }
 

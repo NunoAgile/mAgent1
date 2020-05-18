@@ -13,23 +13,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.QuickPinActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".fragments.cash.Cash_cashConfirmActivity"
+        <activity
+            android:name=".fragments.client.Client_AuthReplyMatrixActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.CustomThemeShiftConfirm"
-            ></activity>
-        <activity android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme.CustomThemeShiftConfirm"/>
+        <activity
+            android:name=".activities.QuickPinActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".fragments.cash.Cash_OpenShiftActivity"
             android:screenOrientation="landscape"
-         ></activity>
-        <activity android:name=".activities.LoginActivity"
+            android:theme="@style/AppTheme.CustomThemeShiftConfirm" />
+        <activity
+            android:name=".fragments.cash.Cash_CloseShiftActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.CustomThemeShiftConfirm" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.LoginActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

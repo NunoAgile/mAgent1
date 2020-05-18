@@ -25,6 +25,7 @@
     <string name="accept2">Accept</string>
     <string name="shiftDetails">"My Shift Details \n"</string>
     <string name="helper_text">"Putting same currency will overwrite previous put."</string>
+    <string name="rep">"(Optional) Shift reports."</string>
 
 
     <string-array name="curr_array">
@@ -32,6 +33,13 @@
         <item>AOA</item>
         <item>USD</item>
         <item>GBP</item>
+    </string-array>
+
+    <string-array name="auth_array">
+        <item>Matrix Card</item>
+        <item>Mobile</item>
+        <item>SMS</item>
+        <item>Security pin</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

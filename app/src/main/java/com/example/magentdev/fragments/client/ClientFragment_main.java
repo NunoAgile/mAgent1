@@ -6,22 +6,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.android.volley.RequestQueue;
-import com.example.magentdev.AuxOperations;
+import com.example.magentdev.API_Operations.WsrAux;
+import com.example.magentdev.AgentOperation;
+import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.VolleyCallback;
-import com.example.magentdev.activities.AssetsInfoOperations;
+import com.example.magentdev.API_Operations.WsrAinf;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,13 +46,17 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class ClientFragment_main extends Fragment {
-    RequestQueue requestQueue;
-    PrivateData pd;
+    private RequestQueue requestQueue;
+    private PrivateData pd;
     private TextInputEditText tiGIDInput;
     private TextInputLayout tilGIDInput, tilAccList;
     private MaterialButton findGIDBtn, gotoDepositBtn, gotoWithdrawBtn, gotoMovementsBtn;
     private TextView userFoundTv;
     private AutoCompleteTextView editTextFilledExposedDropdown;
+    private List<String> gidList = new ArrayList<>();
+    private int listIndex = 0;
+    private LoadingDialog loadingDialog;
+    private AgentOperation agentOperation;
 
     public ClientFragment_main() {
         // Required empty public constructor
@@ -86,6 +95,7 @@ public class ClientFragment_main extends Fragment {
         userFoundTv = getView().findViewById(R.id.userFoundTv);
         editTextFilledExposedDropdown = getView().findViewById(R.id.filled_exposed_dropdown);
         tilAccList = getView().findViewById(R.id.accs_menulistLayout);
+        loadingDialog = new LoadingDialog(getActivity());
 
         findGIDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +103,8 @@ public class ClientFragment_main extends Fragment {
                 if(tiGIDInput.getText().toString().equals("")){
                     tilGIDInput.setError("Insert document identifier first");
                 }else{
-                    tilGIDInput.setError("");
+                    loadingDialog.startingDialog();
+                    tilGIDInput.setError(null);
                     try {
                         wsrQryEntityGID();
                     } catch (JSONException e) {
@@ -102,6 +113,43 @@ public class ClientFragment_main extends Fragment {
                 }
             }
         });
+
+        gotoWithdrawBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tiGIDInput.getText().toString().equals("")){
+                    tilGIDInput.setError("Insert document identifier first");
+                }else if(editTextFilledExposedDropdown.getText().toString().equals("")){
+                    Toast.makeText(getContext(),"Search for the document and select an account first.",Toast.LENGTH_LONG).show();
+                }else{
+                    tiGIDInput.setError(null);
+                    String selectedAccountGID = gidList.get(listIndex);
+                    String operationType = "CW";
+                    String operationName = "Withdraw";
+                    String[] selectedAccInfo = editTextFilledExposedDropdown.getText().toString().split(" ");
+                    agentOperation = new AgentOperation(selectedAccountGID,operationType,operationName,selectedAccInfo[0],selectedAccInfo[2],Integer.parseInt(pd.getSid()));
+
+
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("AgentOperation",agentOperation);
+                    Fragment clientWithdraw = new ClientFragment_CashOperation();
+                    clientWithdraw.setArguments(bundle);
+                    ft.addToBackStack(null);
+                    ft.replace(R.id.nestedScrollView, clientWithdraw);
+                    ft.commit();
+                }
+            }
+        });
+
+        editTextFilledExposedDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listIndex = position;
+            }
+        });
+
+
     }
 
     private void wsrQryEntityGID() throws JSONException {
@@ -119,6 +167,7 @@ public class ClientFragment_main extends Fragment {
                        JSONObject eiItem = ei.getJSONObject(0);
                        String gid = eiItem.getString("GID");
                        wsrIAccountList(dtk,stk,gid);
+                       userFoundTv.setText("Username here");
                    }else{
                        userFoundTv.setText("Invalid ID");
                        new MaterialAlertDialogBuilder(getContext(),  R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
@@ -129,6 +178,7 @@ public class ClientFragment_main extends Fragment {
                                .show();
                        tilAccList.setEnabled(false);
                        editTextFilledExposedDropdown.setText("");
+                       loadingDialog.dismissDialog();
                    }
                 }
             }
@@ -138,7 +188,7 @@ public class ClientFragment_main extends Fragment {
                 System.out.println(result);
             }
         };
-        AuxOperations.wsrQryEntityGID(dtk, stk, did, callback, requestQueue);
+        WsrAux.wsrQryEntityGID(dtk, stk, did, callback, requestQueue);
     }
 
     private void wsrIAccountList(String dtk, String stk, String gid) throws JSONException {
@@ -147,31 +197,40 @@ public class ClientFragment_main extends Fragment {
             public void onSuccess(JSONObject response) throws JSONException {
                 System.out.println(response);
                 JSONArray ao = response.getJSONArray("AO");
-                List<String> list = new ArrayList<String>();
+                List<String> list = new ArrayList<>();
                 for(int i = 0; i < ao.length(); i++){
                     JSONObject aoItem = ao.getJSONObject(i);
                     String nameToShow;
-                    try{
-                        if(aoItem.getString("APN").equals("")) nameToShow = aoItem.getString("AHI");
-                        else nameToShow = aoItem.getString("APN");
-                    }catch(org.json.JSONException exception){
-                        nameToShow = aoItem.getString("AHI");
-                    }
+
+                    if(aoItem.getString("APN").equals("") || aoItem.getString("APN").equals("null")) nameToShow = aoItem.getString("AHI");
+                    else nameToShow = aoItem.getString("APN");
+
                     String currType = aoItem.getString("ACT");
+
                     list.add(nameToShow + " | " + currType);
+                    gidList.add(aoItem.getString("AGI"));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_menu_popup_item, list);
 
                 tilAccList.setEnabled(true);
                 editTextFilledExposedDropdown.setText(list.get(0));
                 editTextFilledExposedDropdown.setAdapter(adapter);
-                // TODO: FIQUEI AQUI, TA O SPINNER FEITO
+                loadingDialog.dismissDialog();
             }
             @Override
             public void onError(String result) {
                 System.out.println(result);
             }
         };
-        AssetsInfoOperations.wsrIAccountList(dtk,stk,gid,callback,requestQueue);
+        WsrAinf.wsrIAccountList(dtk,stk,gid,callback,requestQueue);
     }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        editTextFilledExposedDropdown.setText("");
+    }
+
 }

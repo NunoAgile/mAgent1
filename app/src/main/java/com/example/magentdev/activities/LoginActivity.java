@@ -13,9 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 
 
+import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
-import com.example.magentdev.SessionOperations;
+import com.example.magentdev.API_Operations.WsrAuth_Session;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private String stk;
     private boolean hasDtk;
     private SwitchMaterial touchIDSw;
+    private LoadingDialog loadingDialog;
 
 
     RequestQueue requestQueue;
@@ -77,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         pin2TIL = findViewById(R.id.tilPINC);
         touchIDSw = findViewById(R.id.switchMaterial3);
 
-
+        loadingDialog = new LoadingDialog(LoginActivity.this);
         requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
 
         try {
@@ -258,6 +260,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 authReg();
+                                loadingDialog.startingDialog();
                             }
                         });
                         return true;
@@ -332,7 +335,6 @@ public class LoginActivity extends AppCompatActivity {
                             try (FileOutputStream fos = getApplicationContext().openFileOutput(filenamePIN,getApplicationContext().MODE_PRIVATE)){
                                 fos.write(bPIN);
                             }
-
                             openSession();
 
                         }else if(S.getInt("ECD") == 300){
@@ -343,6 +345,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .setIcon(R.drawable.round_cancel_24)
                                     .show();
                         }
+                        loadingDialog.dismissDialog();
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
@@ -353,11 +356,12 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(result);
                 }
             };
-            SessionOperations.wsrAuthReg(hasDtk,usernameET.getText().toString(),passwordET.getText().toString(),dtk,callback,requestQueue);
+            WsrAuth_Session.wsrAuthReg(hasDtk,usernameET.getText().toString(),passwordET.getText().toString(),dtk,callback,requestQueue);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
 
     private void openSession() {
         try {
@@ -391,6 +395,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .setIcon(R.drawable.round_cancel_24)
                                     .show();
                         }
+                        loadingDialog.dismissDialog();
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
@@ -398,9 +403,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onError(String result) {
                     System.out.println(result);
+                    loadingDialog.dismissDialog();
                 }
             };
-            SessionOperations.wsrAuthSessionOpen(dtk,rtk,callback,requestQueue);
+            WsrAuth_Session.wsrAuthSessionOpen(dtk,rtk,callback,requestQueue);
         } catch (JSONException e) {
             e.printStackTrace();
         }

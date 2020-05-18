@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.cash.CashFragment_OpenShift">
+    tools:context=".fragments.cash.CashFragment_ManageShift">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvShiftInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Open Shift when all entries are inserted and verified"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tilObs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tvShiftInfo"
         app:startIconDrawable="@drawable/baseline_monetization_on_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -92,10 +91,8 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="79dp"
-        android:layout_marginBottom="649dp"
         android:text="PUT"
         android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/accs_menulist"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/colorPrimary" />
@@ -126,6 +123,7 @@
         android:insetBottom="0dp"
         android:text="Open Shift"
         android:textSize="15dp"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilObs"

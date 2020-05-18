@@ -16,6 +16,7 @@ public class PrivateData {
     private String deviceToken;
     private String refreshToken;
     private String fingerprint;
+    private String sid = "-1";
 
     public PrivateData(Context context) throws FileNotFoundException {
 
@@ -26,7 +27,8 @@ public class PrivateData {
             else if(i == 1) filename = "RTK";
             else if(i == 2) filename = "PIN";
             else if(i == 3) filename = "STK";
-            else filename = "FP";
+            else if(i == 4) filename = "FP";
+            else filename = "SID";
 
             FileInputStream fis = context.openFileInput(filename);
             InputStreamReader inputStreamReader =
@@ -45,7 +47,8 @@ public class PrivateData {
                 else if(i == 1) refreshToken = stringBuilder.toString().replace("\n","");
                 else if(i == 2) quickpin = stringBuilder.toString().replace("\n","");
                 else if(i == 3) sessionToken = stringBuilder.toString().replace("\n","");
-                else fingerprint = stringBuilder.toString().replace("\n","");
+                else if(i == 4) fingerprint = stringBuilder.toString().replace("\n","");
+                else sid = stringBuilder.toString().replace("\n","");
             }
         }
     }
@@ -90,5 +93,15 @@ public class PrivateData {
         this.fingerprint = fingerprint;
     }
 
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String fetchSid(){
+        return sid;
+    }
 }
