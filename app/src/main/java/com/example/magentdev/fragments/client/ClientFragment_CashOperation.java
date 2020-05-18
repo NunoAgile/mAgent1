@@ -97,7 +97,7 @@ public class ClientFragment_CashOperation extends Fragment {
         goBackIV = getView().findViewById(R.id.goBackIV);
 
         tb = getActivity().findViewById(R.id.topAppBar);
-        tb.setTitle(tb.getTitle().toString() + " - " + agentOperation.getOperationName());
+        tb.setTitle("Client - " + agentOperation.getOperationName());
 
         authMethodList.setText("Matrix Card");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Objects.requireNonNull(getContext()),R.array.auth_array,R.layout.dropdown_menu_popup_item);
@@ -106,12 +106,20 @@ public class ClientFragment_CashOperation extends Fragment {
         doCashOpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingDialog.startingDialog();
-                try {
-                    wsrBtrnOpen();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(tiAmtInput.getText().length() > 0){
+                    loadingDialog.startingDialog();
+                    tiAmtInput.setError(null);
+                    try {
+                        if(authMethodList.getText().toString().equals("Matrix Card")) wsrBtrnOpen();
+                        else{loadingDialog.dismissDialog();
+                            Toast.makeText(getContext(),"Not yet supported",Toast.LENGTH_LONG).show();}
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    tiAmtInput.setError("Please insert amount first.");
                 }
+
             }
         });
 
@@ -120,6 +128,7 @@ public class ClientFragment_CashOperation extends Fragment {
             public void onClick(View v) {
                 assert getFragmentManager() != null;
                 getFragmentManager().popBackStackImmediate();
+                tb.setTitle("Client");
             }
         });
     }
@@ -180,7 +189,6 @@ public class ClientFragment_CashOperation extends Fragment {
     }
 
     private void executeCashOperation() throws JSONException {
-        if (doCashOpBtn.getText().toString().equals("Withdraw")){
             final VolleyCallback callback = new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject response) throws JSONException {
@@ -196,9 +204,6 @@ public class ClientFragment_CashOperation extends Fragment {
                 }
             };
             WsrCash_Client.wsrCashWithdraw(pd.getDeviceToken(),pd.getSessionToken(),Integer.parseInt(pd.getSid()),agentOperation.getTid(), Objects.requireNonNull(tiAmtInput.getText()).toString(),callback,requestQueue);
-        }else if(doCashOpBtn.getText().toString().equals("Deposit")){
-            Toast.makeText(getContext(),"Not yet implemented",Toast.LENGTH_LONG).show();
-        }
     }
 
     private void computeCashOp() throws JSONException {

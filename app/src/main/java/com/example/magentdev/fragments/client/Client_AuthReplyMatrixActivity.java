@@ -50,6 +50,7 @@ public class Client_AuthReplyMatrixActivity extends AppCompatActivity {
         int height = dm.heightPixels;
         getWindow().setLayout((int) (width*.4), (int) (height*.55));
         getWindow().setBackgroundDrawableResource(R.drawable.round_corners);
+        getWindow().setElevation(16);
         cnfBtn = findViewById(R.id.confirmSPinBtn);
         decBtn = findViewById(R.id.declineSPinBtn);
 
@@ -210,6 +211,7 @@ public class Client_AuthReplyMatrixActivity extends AppCompatActivity {
                 JSONObject s = response.getJSONObject("S");
                 if(s.getInt("ECD") == 0){
                     if(response.getString("BTA").equals("AR")){
+                        securityMatrixPv.setText(null);
                         loadingDialog.dismissDialog();
                         new MaterialAlertDialogBuilder(Client_AuthReplyMatrixActivity.this,  R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
                                 .setTitle("Incorrect matrix coordinates. Try again.")

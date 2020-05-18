@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 
@@ -22,18 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.example.magentdev.API_Operations.WsrAux;
 import com.example.magentdev.API_Operations.WsrCash_Information;
 import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.ShiftDetails;
+import com.example.magentdev.SoftKeyboardStateHelper;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,6 +57,7 @@ public class CashFragment_ManageShift extends Fragment {
     private Spinner spinner;
     private Button addBtn, remBtn, openShiftBtn;
     private TextInputEditText tiAmt, tiObs;
+    private TextInputLayout tilAmt;
     private TextView tvShiftDetails, tvShiftInfo;
     private Map<String, String[]> curr_map;
     private PrivateData pd;
@@ -71,6 +73,7 @@ public class CashFragment_ManageShift extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         curr_map = new HashMap<>();
+        ShiftDetails.setCurr_map((HashMap<String, String[]>) curr_map);
     }
 
 
@@ -79,7 +82,7 @@ public class CashFragment_ManageShift extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_cash_open_shift, container, false);
+        return inflater.inflate(R.layout.fragment_cash_shiftdetails, container, false);
     }
 
     @Override
@@ -96,6 +99,7 @@ public class CashFragment_ManageShift extends Fragment {
         remBtn = getView().findViewById(R.id.remBtn);
         openShiftBtn= getView().findViewById(R.id.openShiftBtn);
         tiAmt = getView().findViewById(R.id.tiAmount);
+        tilAmt = getView().findViewById(R.id.tilAmount);
         tiObs = getView().findViewById(R.id.tiObs);
         tvShiftDetails = getView().findViewById(R.id.tvShiftDetails);
         tvShiftInfo = getView().findViewById(R.id.tvShiftInfo);
@@ -104,6 +108,7 @@ public class CashFragment_ManageShift extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoftKeyboardStateHelper.hideKeyboardFrom(getContext(),getView());
                 setShiftDetail();
             }
         });
@@ -134,9 +139,15 @@ public class CashFragment_ManageShift extends Fragment {
         String obs = Objects.requireNonNull(tiObs.getText()).toString();
         if (obs.equals("")) obs = "No observations";
 
+        curr_map = ShiftDetails.getCurr_map();
         String[] values = {tiAmt.getText().toString(),obs};
         curr_map.put(spinner.getSelectedItem().toString(),values);
         ShiftDetails.setCurr_map((HashMap<String, String[]>) curr_map);
+        Toast.makeText(getContext(),"Updated details.",Toast.LENGTH_SHORT).show();
+        tiAmt.setText(null);
+        tiObs.setText(null);
+        ConstraintLayout cl = getView().findViewById(R.id.focusablelayout);
+        cl.requestFocus();
         setDetailsTxt();
     }
 
@@ -173,6 +184,7 @@ public class CashFragment_ManageShift extends Fragment {
 
     private void setDetailsTxt(){
         StringBuilder shiftDetailsString = new StringBuilder("My Shift details:\n");
+
         for (String entry : curr_map.keySet()) {
             shiftDetailsString.append((Objects.requireNonNull(curr_map.get(entry)))[0]).append(" ").append(entry).append("\n");
         }
@@ -241,7 +253,7 @@ public class CashFragment_ManageShift extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        System.out.println(ShiftDetails.getCurr_map());
         try {
             pd = new PrivateData(getContext());
         } catch (FileNotFoundException e) {

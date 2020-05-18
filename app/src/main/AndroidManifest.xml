@@ -30,7 +30,8 @@
             android:theme="@style/AppTheme.CustomThemeShiftConfirm" />
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="landscape">

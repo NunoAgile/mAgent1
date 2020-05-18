@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Cash_CloseShiftActivity extends Activity {
     private PinView securityPinPv;
@@ -52,6 +53,7 @@ public class Cash_CloseShiftActivity extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((int) (width*.4), (int) (height*.55));
         getWindow().setBackgroundDrawableResource(R.drawable.round_corners);
+        getWindow().setElevation(16);
         cnfBtn = findViewById(R.id.confirmSPinBtn);
         decBtn = findViewById(R.id.declineSPinBtn);
 
@@ -227,7 +229,7 @@ public class Cash_CloseShiftActivity extends Activity {
                     JSONObject S = response.getJSONObject("S");
                     System.out.println(response);
                     if(S.getInt("ECD") == 0){
-                        ShiftDetails.setCurr_map(null);
+                        ShiftDetails.setCurr_map(new HashMap<String, String[]>());
                         String sid = "-1";
                         String filenameSID = "SID";
                         String fileContentSID = sid;

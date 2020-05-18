@@ -29,10 +29,12 @@
 
     <TextView
         android:id="@+id/insertMatrixTv"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:textSize="15sp"
+        android:text="Insira o valor do cartão matriz para a seguinte coordenada: A4 "
+        android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matrixPinPV" />

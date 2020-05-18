@@ -9,6 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorError">@color/colorError</item>
         <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="PINButtonTopLeft" parent="Widget.MaterialComponents.Button.OutlinedButton">

@@ -1,6 +1,8 @@
 package com.example.magentdev.fragments.client;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,6 +28,7 @@ import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
+import com.example.magentdev.SoftKeyboardStateHelper;
 import com.example.magentdev.VolleyCallback;
 import com.example.magentdev.API_Operations.WsrAinf;
 import com.google.android.material.button.MaterialButton;
@@ -103,6 +107,7 @@ public class ClientFragment_main extends Fragment {
                 if(tiGIDInput.getText().toString().equals("")){
                     tilGIDInput.setError("Insert document identifier first");
                 }else{
+                    SoftKeyboardStateHelper.hideKeyboardFrom(getContext(),getView());
                     loadingDialog.startingDialog();
                     tilGIDInput.setError(null);
                     try {
@@ -121,6 +126,9 @@ public class ClientFragment_main extends Fragment {
                     tilGIDInput.setError("Insert document identifier first");
                 }else if(editTextFilledExposedDropdown.getText().toString().equals("")){
                     Toast.makeText(getContext(),"Search for the document and select an account first.",Toast.LENGTH_LONG).show();
+                }
+                else if(pd.getSid().equals("-1")){
+                    Toast.makeText(getContext(),"Invalid action. Open shift first.",Toast.LENGTH_LONG).show();
                 }else{
                     tiGIDInput.setError(null);
                     String selectedAccountGID = gidList.get(listIndex);

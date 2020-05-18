@@ -1,20 +1,26 @@
 package com.example.magentdev.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import com.android.volley.RequestQueue;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.API_Operations.WsrAuth_Session;
+import com.example.magentdev.SoftKeyboardStateHelper;
 import com.example.magentdev.VolleyCallback;
 import com.example.magentdev.fragments.cash.CashFragment_CashierContext;
 import com.example.magentdev.fragments.cash.CashFragment_ManageShift;
@@ -40,18 +46,21 @@ public class MainActivity extends AppCompatActivity {
     private ClientFragment_main client_fragment_main;
     private TransfersFragment_main transfers_fragment_main;
     private TabLayout tabLayout;
+    private RelativeLayout rl;
+    private int selectedItemId;
+    private int selectedTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
+        final BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
         topAppbar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppbar);
         topAppbar.setBackgroundResource(R.drawable.top_app_bar_round);
         tabLayout = findViewById(R.id.tabs);
-
+        rl = findViewById(R.id.relativeTeste);
         cashFragment_manageShift = new CashFragment_ManageShift();
         cashFragment_cashierContext = new CashFragment_CashierContext();
         client_fragment_main = new ClientFragment_main();
@@ -61,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         setFragment(cashFragment_cashierContext);
         tabLayout.addTab(tabLayout.newTab().setText("Cashier Context"));
         tabLayout.addTab(tabLayout.newTab().setText("My Shift"));
-
 
         bottom_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -132,6 +140,34 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        final SoftKeyboardStateHelper softKeyboardStateHelper = new SoftKeyboardStateHelper(getApplicationContext(), findViewById(R.id.relativeTeste));
+        SoftKeyboardStateHelper.SoftKeyboardStateListener softKeyboardStateListener = new SoftKeyboardStateHelper.SoftKeyboardStateListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onSoftKeyboardOpened(int keyboardHeightInPx) {
+                bottom_nav.setElevation(0);
+                bottom_nav.setBackgroundColor(Color.parseColor("#f5f7f7"));
+                for(int i = 0; i < bottom_nav.getMenu().size(); i++){
+                    if(bottom_nav.getMenu().getItem(i).getIcon() != null) {
+                        bottom_nav.getMenu().getItem(i).setIcon(null);
+                        bottom_nav.getMenu().getItem(i).setEnabled(false);
+                        bottom_nav.getMenu().getItem(i).setTitle("");
+                    }
+                }
+            }
+
+            @Override
+            public void onSoftKeyboardClosed() {
+                bottom_nav.setElevation(16);
+                bottom_nav.setBackgroundColor(Color.parseColor("#f7fafa"));
+                bottom_nav.getMenu().getItem(0).setIcon(R.drawable.baseline_account_balance_24).setEnabled(true).setTitle("Cash");
+                bottom_nav.getMenu().getItem(2).setIcon(R.drawable.baseline_supervisor_account_24).setEnabled(true).setTitle("Client");
+                bottom_nav.getMenu().getItem(4).setIcon(R.drawable.baseline_sync_alt_24).setEnabled(true).setTitle("Transfers");
+
+            }
+        };
+        softKeyboardStateHelper.addSoftKeyboardStateListener(softKeyboardStateListener);
+
     }
 
     public void setFragment(Fragment fragment){
@@ -175,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(R.drawable.round_exit_to_app_24)
                 .show();
     }
+
+
 
 }
 

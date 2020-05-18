@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 
 public class Cash_OpenShiftActivity extends Activity {
@@ -57,6 +58,7 @@ public class Cash_OpenShiftActivity extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((int) (width*.4), (int) (height*.55));
         getWindow().setBackgroundDrawableResource(R.drawable.round_corners);
+        getWindow().setElevation(16);
         cnfBtn = findViewById(R.id.confirmSPinBtn);
         decBtn = findViewById(R.id.declineSPinBtn);
 
@@ -232,7 +234,7 @@ public class Cash_OpenShiftActivity extends Activity {
                     JSONObject S = response.getJSONObject("S");
                     System.out.println(response);
                     if(S.getInt("ECD") == 0){
-                        ShiftDetails.setCurr_map(null);
+                        ShiftDetails.setCurr_map(new HashMap<String, String[]>());
                         String sid = response.getString("SID");
                         String filenameSID = "SID";
                         String fileContentSID = sid;
@@ -244,7 +246,6 @@ public class Cash_OpenShiftActivity extends Activity {
                             e.printStackTrace();
                         }
                         finish();
-                        System.out.println("Fechou");
                         Toast.makeText(Cash_OpenShiftActivity.this, "Shift successfully open.", Toast.LENGTH_SHORT).show();
                     }else if(S.getInt("ECD") == 312){
                         new MaterialAlertDialogBuilder(Cash_OpenShiftActivity.this,  R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
