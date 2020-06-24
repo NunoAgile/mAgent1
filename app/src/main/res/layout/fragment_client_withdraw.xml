@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Amount"
+            android:inputType="number"
             tools:layout_editor_absoluteX="274dp"
             tools:layout_editor_absoluteY="181dp" />
 
@@ -57,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tilCWAmount"
         app:layout_constraintTop_toBottomOf="@+id/selAccTv"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.107" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/auth_menulistLayout"

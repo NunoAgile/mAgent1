@@ -18,6 +18,7 @@ import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.ShiftDetails;
 import com.example.magentdev.API_Operations.WsrCash_Agent;
+import com.example.magentdev.UpdateCashierCash;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.hash.Hashing;
@@ -230,6 +231,7 @@ public class Cash_CloseShiftActivity extends Activity {
                     System.out.println(response);
                     if(S.getInt("ECD") == 0){
                         ShiftDetails.setCurr_map(new HashMap<String, String[]>());
+                        UpdateCashierCash.setCash_map(new HashMap<String, String[]>());
                         String sid = "-1";
                         String filenameSID = "SID";
                         String fileContentSID = sid;

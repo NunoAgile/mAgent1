@@ -134,8 +134,10 @@ public class ClientFragment_main extends Fragment {
                     String selectedAccountGID = gidList.get(listIndex);
                     String operationType = "CW";
                     String operationName = "Withdraw";
-                    String[] selectedAccInfo = editTextFilledExposedDropdown.getText().toString().split(" ");
-                    agentOperation = new AgentOperation(selectedAccountGID,operationType,operationName,selectedAccInfo[0],selectedAccInfo[2],Integer.parseInt(pd.getSid()));
+
+                    String[] selectedAccInfo = editTextFilledExposedDropdown.getText().toString().split("\\|");
+                    System.out.println(selectedAccInfo[0]+selectedAccInfo[1]);
+                    agentOperation = new AgentOperation(selectedAccountGID,operationType,operationName,selectedAccInfo[0],selectedAccInfo[1].replace(" ",""),Integer.parseInt(pd.getSid()));
 
 
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -145,6 +147,71 @@ public class ClientFragment_main extends Fragment {
                     clientWithdraw.setArguments(bundle);
                     ft.addToBackStack(null);
                     ft.replace(R.id.nestedScrollView, clientWithdraw);
+                    ft.commit();
+                }
+            }
+        });
+
+        gotoDepositBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tiGIDInput.getText().toString().equals("")){
+                    tilGIDInput.setError("Insert document identifier first");
+                }else if(editTextFilledExposedDropdown.getText().toString().equals("")){
+                    Toast.makeText(getContext(),"Search for the document and select an account first.",Toast.LENGTH_LONG).show();
+                }
+                else if(pd.getSid().equals("-1")){
+                    Toast.makeText(getContext(),"Invalid action. Open shift first.",Toast.LENGTH_LONG).show();
+                }else{
+                    tiGIDInput.setError(null);
+                    String selectedAccountGID = gidList.get(listIndex);
+                    String operationType = "CD";
+                    String operationName = "Deposit";
+                    String[] selectedAccInfo = editTextFilledExposedDropdown.getText().toString().split("\\|");
+                    System.out.println(selectedAccInfo[0]+selectedAccInfo[1]);
+                    agentOperation = new AgentOperation(selectedAccountGID,operationType,operationName,selectedAccInfo[0],selectedAccInfo[1].replace(" ",""),Integer.parseInt(pd.getSid()));
+
+
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("AgentOperation",agentOperation);
+                    Fragment clientWithdraw = new ClientFragment_CashOperation();
+                    clientWithdraw.setArguments(bundle);
+                    ft.addToBackStack(null);
+                    ft.replace(R.id.nestedScrollView, clientWithdraw);
+                    ft.commit();
+                }
+            }
+        });
+
+        gotoMovementsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tiGIDInput.getText().toString().equals("")){
+                    tilGIDInput.setError("Insert document identifier first");
+                }else if(editTextFilledExposedDropdown.getText().toString().equals("")){
+                    Toast.makeText(getContext(),"Search for the document and select an account first.",Toast.LENGTH_LONG).show();
+                }
+                else if(pd.getSid().equals("-1")){
+                    Toast.makeText(getContext(),"Invalid action. Open shift first.",Toast.LENGTH_LONG).show();
+                }else{
+                    tiGIDInput.setError(null);
+                    String selectedAccountGID = gidList.get(listIndex);
+                    String operationType = "MV";
+                    String operationName = "Movements";
+
+                    String[] selectedAccInfo = editTextFilledExposedDropdown.getText().toString().split("\\|");
+                    System.out.println(selectedAccInfo[0]+selectedAccInfo[1]);
+                    agentOperation = new AgentOperation(selectedAccountGID,operationType,operationName,selectedAccInfo[0],selectedAccInfo[1].replace(" ",""),Integer.parseInt(pd.getSid()));
+
+
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("AgentOperation",agentOperation);
+                    Fragment clientMovements = new ClientFragment_AccInfo();
+                    clientMovements.setArguments(bundle);
+                    ft.addToBackStack(null);
+                    ft.replace(R.id.nestedScrollView, clientMovements);
                     ft.commit();
                 }
             }
@@ -206,6 +273,7 @@ public class ClientFragment_main extends Fragment {
                 System.out.println(response);
                 JSONArray ao = response.getJSONArray("AO");
                 List<String> list = new ArrayList<>();
+                gidList = new ArrayList<>();
                 for(int i = 0; i < ao.length(); i++){
                     JSONObject aoItem = ao.getJSONObject(i);
                     String nameToShow;
@@ -238,6 +306,7 @@ public class ClientFragment_main extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        listIndex = 0;
         editTextFilledExposedDropdown.setText("");
     }
 

@@ -20,6 +20,7 @@ import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
 import com.example.magentdev.ShiftDetails;
 import com.example.magentdev.API_Operations.WsrCash_Agent;
+import com.example.magentdev.UpdateCashierCash;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.hash.Hashing;
@@ -234,6 +235,12 @@ public class Cash_OpenShiftActivity extends Activity {
                     JSONObject S = response.getJSONObject("S");
                     System.out.println(response);
                     if(S.getInt("ECD") == 0){
+                        HashMap<String, String[]> curr_map = ShiftDetails.getCurr_map();
+                        HashMap<String, Integer> cash_map = new HashMap<String, Integer>();
+                        for (String entry : curr_map.keySet()) {
+                            cash_map.put(entry,Integer.valueOf(curr_map.get(entry)[0]));
+                        }
+                        UpdateCashierCash.setCash_map(cash_map);
                         ShiftDetails.setCurr_map(new HashMap<String, String[]>());
                         String sid = response.getString("SID");
                         String filenameSID = "SID";

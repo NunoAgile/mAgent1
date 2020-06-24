@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/insert_document_identifier_to_search_for"
+            android:singleLine="true"
             tools:layout_editor_absoluteX="274dp"
             tools:layout_editor_absoluteY="181dp" />
 

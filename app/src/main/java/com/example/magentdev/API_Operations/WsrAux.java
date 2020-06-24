@@ -1,5 +1,6 @@
 package com.example.magentdev.API_Operations;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,6 +36,7 @@ public class WsrAux {
                 System.out.println(error.toString());
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(15000,5,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 

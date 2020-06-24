@@ -41,4 +41,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.chaos.view:pinview:1.4.3'
     implementation("com.google.guava:guava:29.0-android")
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
 }

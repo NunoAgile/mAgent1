@@ -59,7 +59,7 @@ public class CashFragment_ManageShift extends Fragment {
     private TextInputEditText tiAmt, tiObs;
     private TextInputLayout tilAmt;
     private TextView tvShiftDetails, tvShiftInfo;
-    private Map<String, String[]> curr_map;
+    private HashMap<String, String[]> curr_map;
     private PrivateData pd;
     private RequestQueue requestQueue;
     private LoadingDialog loadingDialog;

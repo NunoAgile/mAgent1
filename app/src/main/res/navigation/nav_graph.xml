@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginActivity2">
+    <activity
+        android:id="@+id/loginActivity2"
+        android:name="com.example.magentdev.activities.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" >
+        <action
+            android:id="@+id/action_loginActivity2_to_quickPinActivity"
+            app:destination="@id/quickPinActivity" />
+        <action
+            android:id="@+id/action_loginActivity2_to_cashFragment_CashierContext"
+            app:destination="@id/cashFragment_CashierContext" />
+    </activity>
+    <activity
+        android:id="@+id/quickPinActivity"
+        android:name="com.example.magentdev.activities.QuickPinActivity"
+        android:label="activity_quick_pin"
+        tools:layout="@layout/activity_quick_pin" />
+    <fragment
+        android:id="@+id/cashFragment_CashierContext"
+        android:name="com.example.magentdev.fragments.cash.CashFragment_CashierContext"
+        android:label="fragment_cash_cashier_context"
+        tools:layout="@layout/fragment_cash_cashier_context" />
+</navigation>

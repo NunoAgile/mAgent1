@@ -20,6 +20,7 @@ import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
+import com.example.magentdev.UpdateCashierCash;
 import com.example.magentdev.VolleyCallback;
 import com.example.magentdev.fragments.cash.Cash_CloseShiftActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -239,7 +240,7 @@ public class Client_AuthReplyMatrixActivity extends AppCompatActivity {
         WsrBtrn_Authorisation.wsrBtrnAuthReply(pd.getDeviceToken(),pd.getSessionToken(),agentOperation.getTid(),securityMatrixPv.getText().toString(),callback,requestQueue);
     }
 
-    private void validateCashOp() throws JSONException {
+    public void validateCashOp() throws JSONException {
         final VolleyCallback callback = new VolleyCallback() {
             @Override
             public void onSuccess(JSONObject response) throws JSONException {
@@ -247,6 +248,7 @@ public class Client_AuthReplyMatrixActivity extends AppCompatActivity {
                 JSONObject s = response.getJSONObject("S");
                 if(s.getInt("ECD") == 0){
                     closeCashOp();
+                    UpdateCashierCash.updateCash(agentOperation.getAmt(),agentOperation.getTransactionCurr(),agentOperation.getOperationType());
                 }
             }
             @Override

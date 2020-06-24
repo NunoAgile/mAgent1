@@ -20,6 +20,7 @@ import com.example.magentdev.LoadingDialog;
 import com.example.magentdev.PrivateData;
 import com.example.magentdev.R;
 import com.example.magentdev.RequestQueueSingleton;
+import com.example.magentdev.UpdateCashierCash;
 import com.example.magentdev.VolleyCallback;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -42,7 +43,7 @@ import java.util.Objects;
  * create an instance of this fragment.
  */
 public class CashFragment_CashierContext extends Fragment {
-    private TextView tvLatestShift, tvLatestOperation, tvAgentAssets;
+    private TextView tvLatestShift, tvLatestOperation, tvAgentAssets, tvShiftAssets;
     private TextInputLayout tilShiftsList;
     private Button btnCheckDtls;
     private AutoCompleteTextView editTextFilledExposedDropdown;
@@ -74,6 +75,7 @@ public class CashFragment_CashierContext extends Fragment {
         tvLatestShift = getView().findViewById(R.id.tvLatestShift);
         tvLatestOperation = getView().findViewById(R.id.tvLatestOperation);
         tvAgentAssets = getView().findViewById(R.id.tvAgentAssets);
+        tvShiftAssets = getView().findViewById(R.id.tvAgentSAssets);
         tilShiftsList = getView().findViewById(R.id.shiftslist_menulayout);
         editTextFilledExposedDropdown = getView().findViewById(R.id.filled_exposed_dropdown);
         btnCheckDtls = getView().findViewById(R.id.chkSftDtlsBtn);
@@ -106,20 +108,52 @@ public class CashFragment_CashierContext extends Fragment {
                 if(s.getInt("ECD") == 0){
                     JSONArray cb = response.getJSONArray("CB");
                     String operationType = cb.getJSONObject(0).getString("SBT");
+                    List<String> list = new ArrayList<>();
+                    StringBuilder shiftCashString = new StringBuilder("My Shift assets:\n");
                     if(operationType.equals("C")) operationType = "Closed";
                     else operationType = "Open";
-                    String latestShift = tvLatestShift.getText().toString() + " " + response.getJSONArray("CB").getJSONObject(0).getString("SBD").replace("T"," ") + " | " + operationType;
-                    tvLatestShift.setText(latestShift);
-                    List<String> list = new ArrayList<>();
+
                     for(int i = 0; i < cb.length(); i++){
                         JSONObject cbItem = cb.getJSONObject(i);
                         list.add(cbItem.getString("SBD").replace("T"," "));
+                        if(operationType.equals("Open")){
+                            if(UpdateCashierCash.getCash_map() == null){
+                                if(i == 0){
+                                    System.out.println(i);
+                                    HashMap<String, Integer> cash_map = new HashMap<String, Integer>();
+                                    for(int j =0; j < cbItem.getJSONArray("AC").length(); j++){
+                                        System.out.println(j);
+                                        int amt = cbItem.getJSONArray("AC").getJSONObject(j).getJSONObject("CA").getInt("AMT");
+                                        cash_map.put(cbItem.getJSONArray("AC").getJSONObject(j).getJSONObject("CA").getString("CRR"),amt);
+                                        UpdateCashierCash.setCash_map(cash_map);
+                                    }
+
+                                }
+                            }
+                        }
                     }
+                    HashMap<String, Integer> cash_map = UpdateCashierCash.getCash_map();
+                    if(cash_map != null){
+                        for(String entry:cash_map.keySet()){
+                            System.out.println(entry);
+                            shiftCashString.append(cash_map.get(entry)).append(" ").append(entry).append("\n");
+                        }
+                    }
+
+
+
+
+
+                    String latestShift = tvLatestShift.getText().toString() + " " + response.getJSONArray("CB").getJSONObject(0).getString("SBD").replace("T"," ") + " | " + operationType;
+                    tvLatestShift.setText(latestShift);
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_menu_popup_item, list);
                     tilShiftsList.setEnabled(true);
+                    tvShiftAssets.setText(shiftCashString);
                     editTextFilledExposedDropdown.setText(list.get(0));
                     editTextFilledExposedDropdown.setAdapter(adapter);
                     loadingDialog.dismissDialog();
+
+
                 }
             }
             @Override

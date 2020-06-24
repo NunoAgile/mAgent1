@@ -8,6 +8,7 @@ public class AgentOperation implements Serializable {
     private String operationType;
     private String operationName;
     private String clientAccName;
+    private int amt;
     private int tid;
     private int sid;
 
@@ -76,6 +77,14 @@ public class AgentOperation implements Serializable {
 
     public void setSid(int sid) {
         this.sid = sid;
+    }
+
+    public int getAmt() {
+        return amt;
+    }
+
+    public void setAmt(int amt) {
+        this.amt = amt;
     }
 
 }
